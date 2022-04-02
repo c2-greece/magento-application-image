@@ -63,7 +63,7 @@ RUN sed -i '/listen =.*/c\listen = \/var\/run\/php7.4-fpm.sock' /usr/local/etc/p
 RUN sed -i '/;listen.owner = www-data/c\listen.owner = www-data' /usr/local/etc/php-fpm.d/www.conf
 RUN sed -i '/;listen.group = www-data/c\listen.group = www-data' /usr/local/etc/php-fpm.d/www.conf
 RUN sed -i '/;listen.mode =.*/c\listen.mode = 0660' /usr/local/etc/php-fpm.d/www.conf
-RUN sed -i -e "s/;\?memory_limit\s*=\s*.*/memory_limit = 512M/g" $phpinipath
+RUN sed -i -e "s/;\?memory_limit\s*=\s*.*/memory_limit = 1024M/g" $phpinipath
 RUN sed -i -e "s/;\?max_execution_time\s*=\s*.*/max_execution_time = 180/g" $phpinipath
 
 #RUN sed -i -e "s/;\?session.save_handler\s*=\s*.*/session.save_handler = memcached/g" $phpinipath
