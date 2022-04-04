@@ -89,6 +89,8 @@ RUN nginx -t
 # Add fresh code
 RUN mkdir -p /var/www/html/ && rm -rf /var/www/html/*
 
+WORKDIR /var/www/html/
+
 EXPOSE 80
 
 
