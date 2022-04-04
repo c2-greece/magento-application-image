@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     libzip-dev \
     libtidy-dev \
+    libxslt-dev \
     libgearman-dev \
     libcurl4-openssl-dev \
     libwebp-dev \    
@@ -46,7 +47,7 @@ RUN pecl install apcu-5.1.20 && docker-php-ext-enable apcu
 RUN echo "extension=apcu.so" >> $phpinipath
 RUN echo "apc.enable_cli=1" >> $phpinipath
 RUN echo "apc.enable=1" >> $phpinipath
-RUN docker-php-ext-install mysqli pdo pdo_mysql  soap exif intl opcache zip tidy gettext  bcmath bz2 calendar ffi 
+RUN docker-php-ext-install mysqli pdo pdo_mysql  soap exif intl opcache zip tidy gettext  bcmath bz2 calendar ffi simplexml xsl sockets
 RUN pecl install -o -f memcache && pecl install -o -f redis && rm -rf /tmp/pear &&  docker-php-ext-enable memcache &&  docker-php-ext-enable redis
 RUN docker-php-ext-configure gd --with-freetype --with-webp --with-jpeg &&  docker-php-ext-install gd
 RUN echo "memcache.hash_strategy=consistent" >> /usr/local/etc/php/conf.d/docker-php-ext-memcache.ini
