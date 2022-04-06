@@ -66,6 +66,14 @@ RUN sed -i '/;listen.group = www-data/c\listen.group = www-data' /usr/local/etc/
 RUN sed -i '/;listen.mode =.*/c\listen.mode = 0660' /usr/local/etc/php-fpm.d/www.conf
 RUN sed -i -e "s/;\?memory_limit\s*=\s*.*/memory_limit = 2048M/g" $phpinipath
 RUN sed -i -e "s/;\?max_execution_time\s*=\s*.*/max_execution_time = 180/g" $phpinipath
+RUN sed -i '3 i realpath_cache_size=10M' $phpinipath
+RUN sed -i '3 i realpath_cache_ttl=7200' $phpinipath
+RUN echo 'opcache.memory_consumption=512' >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini 
+RUN echo 'opcache.max_accelerated_files=60000' >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini 
+RUN echo 'opcache.consistency_checks=0' >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini 
+RUN echo 'opcache.validate_timestamps=0' >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini 
+RUN echo "opcache.enable_cli=1" >> /usr/local/etc/php/conf.d/docker-php-ext-opcache.ini 
+
 
 #RUN sed -i -e "s/;\?session.save_handler\s*=\s*.*/session.save_handler = memcached/g" $phpinipath
 #RUN sed -i -e "s/;\?session.save_path\s*=\s*.*/session.save_path = 10.110.18.101:31211,10.110.18.102:31211/g" $phpinipath
