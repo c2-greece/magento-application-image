@@ -48,7 +48,7 @@ RUN echo "extension=apcu.so" >> $phpinipath
 RUN echo "apc.enable_cli=1" >> $phpinipath
 RUN echo "apc.enable=1" >> $phpinipath
 RUN docker-php-ext-install mysqli pdo pdo_mysql  soap exif intl opcache zip tidy gettext  bcmath bz2 calendar ffi simplexml xsl sockets
-RUN pecl install -o -f memcache && pecl install -o -f redis && rm -rf /tmp/pear &&  docker-php-ext-enable memcache &&  docker-php-ext-enable redis
+RUN pecl install -o -f memcache && pecl install -o -f redis && rm -rf /tmp/pear &&  docker-php-ext-enable memcache &&  docker-php-ext-enable redis  &&  docker-php-ext-enable xsl
 RUN docker-php-ext-configure gd --with-freetype --with-webp --with-jpeg &&  docker-php-ext-install gd
 RUN echo "memcache.hash_strategy=consistent" >> /usr/local/etc/php/conf.d/docker-php-ext-memcache.ini
 
